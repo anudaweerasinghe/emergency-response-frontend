@@ -1,0 +1,34 @@
+PODS:
+  - countdown_flutter (0.0.1):
+    - Flutter
+  - Flutter (1.0.0)
+  - shared_preferences (0.0.1):
+    - Flutter
+  - sms (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - countdown_flutter (from `.symlinks/plugins/countdown_flutter/ios`)
+  - Flutter (from `.symlinks/flutter/ios`)
+  - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
+  - sms (from `.symlinks/plugins/sms/ios`)
+
+EXTERNAL SOURCES:
+  countdown_flutter:
+    :path: ".symlinks/plugins/countdown_flutter/ios"
+  Flutter:
+    :path: ".symlinks/flutter/ios"
+  shared_preferences:
+    :path: ".symlinks/plugins/shared_preferences/ios"
+  sms:
+    :path: ".symlinks/plugins/sms/ios"
+
+SPEC CHECKSUMS:
+  countdown_flutter: c54138769b1040271bd4f1b4e718ca5212788e99
+  Flutter: 9d0fac939486c9aba2809b7982dfdbb47a7b0296
+  shared_preferences: 5a1d487c427ee18fcd3ea1f2a131569481834b53
+  sms: 0f582dd38a560d2429e4341ef230c0b402f5eaa8
+
+PODFILE CHECKSUM: ebd43b443038e611b86ede96e613bd6033c49497
+
+COCOAPODS: 1.5.3
