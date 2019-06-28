@@ -1,11 +1,11 @@
-import 'user_model2.dart';
+import 'user_model.dart';
 import 'message_model.dart';
 
 class StatusDetails {
   Message message;
-  List<User2> safeUsers;
-  List<User2> affectedUsers;
-  List<User2> noResponseUsers;
+  List<User> safeUsers;
+  List<User> affectedUsers;
+  List<User> noResponseUsers;
 
   StatusDetails(
       {this.message, this.safeUsers, this.affectedUsers, this.noResponseUsers});
@@ -14,13 +14,13 @@ class StatusDetails {
 
 
     var safeUsersFromJson = json['safeUsers'] as List;
-    List<User2> safeUsersList = safeUsersFromJson.map<User2>((json)=>User2.fromJson(json)).toList();
+    List<User> safeUsersList = safeUsersFromJson.map<User>((json)=>User.fromJson(json)).toList();
 
     var affectedUsersFromJson = json['affectedUsers'] as List;
-    List<User2> affectedUsersList = affectedUsersFromJson.map<User2>((json)=>User2.fromJson(json)).toList();
+    List<User> affectedUsersList = affectedUsersFromJson.map<User>((json)=>User.fromJson(json)).toList();
 
     var noResponseUsersFromJson = json['noResponseUsers'];
-    List<User2> noResponseUsersList = noResponseUsersFromJson.map<User2>((json)=>User2.fromJson(json)).toList();
+    List<User> noResponseUsersList = noResponseUsersFromJson.map<User>((json)=>User.fromJson(json)).toList();
 
 
     return new StatusDetails(

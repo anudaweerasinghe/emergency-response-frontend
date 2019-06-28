@@ -105,6 +105,8 @@ class _OTPScreenState extends State<OTPScreen>{
       prefs.setString('imguri', user.imguri);
       prefs.setString('phone', user.phone);
 
+      print(user.name);
+
       Navigator.pop(context);
       Navigator.pop(context);
       Navigator.pushReplacement(
