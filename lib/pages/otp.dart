@@ -93,7 +93,7 @@ class _OTPScreenState extends State<OTPScreen>{
     pr.setMessage("Verifying...");
     pr.show();
 
-    User user = await verifyOTP(session, otp);
+    User user = await verifyOTP(session, otp, phone);
     pr.hide(context);
     if(user==null){
       _showDialog("The code you have entered is incorrect", "Incorrect Code!");

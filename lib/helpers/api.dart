@@ -15,14 +15,16 @@ Future<bool> getTokens() async{
   SharedPreferences pref1 = await SharedPreferences.getInstance();
 
   String grant_type = "password";
-  String secretKey = "Basic bW9iaWxlOnBpbg==";
-  String username = pref1.get("authUsername");
-  String password = pref1.get("authPassword");
+  String client_id = "mobile";
+  String auth_type = "otp";
+  String session = pref1.get("sessionId");
+  String otp = pref1.get("otp");
+  String mobileNumber = pref1.get("phone");
 
 
-  String url = baseUrl+'/oauth/token?grant_type='+grant_type+'&username='+username+'&password='+password;
-  Map<String, String> headers = {"Authorization": secretKey, "Content-type": "application/json"};
-  String json1 = '';
+  String url = baseUrl+'/oauth/token';
+  Map<String, String> headers = {"Content-type": "application/json"};
+  String json1 = '{"client_id": "'+client_id+'", "session": "'+session+'", "grant_type": "'+grant_type+'", "auth_type": "'+auth_type+'", "otp": "'+otp+'", "mobile_number": "'+mobileNumber+'"}';
 
   final response = await http.post(url, headers: headers, body: json1);
 
@@ -58,38 +60,59 @@ Future<String> LogIn(String phone) async{
   }
 }
 
-Future<User> verifyOTP(String sessionId, String otp) async{
+Future<User> getUserDetails(String phone) async {
+  SharedPreferences pref2 = await SharedPreferences.getInstance();
+
+  String accessToken = pref2.get("access_token");
 
 
-  String url = baseUrl+'/login/otp';
-  Map<String, String> headers = {"Content-type": "application/json"};
-  String json1 = '{"sessionId": "'+sessionId+'", "otp": "'+otp+'"}';
+  String url = baseUrl + '/main/user-details';
+  Map<String, String> headers = {
+    "Content-type": "application/json",
+    "Authorization": "Bearer " + accessToken
+  };
+  String json1 = '{"phone": "' + phone + '"}';
 
   final response = await http.post(url, headers: headers, body: json1);
 
-  if(response.statusCode==200){
-
-    OTPResponse otpResponse;
+  if (response.statusCode == 200) {
+    User user;
 
     var data = json.decode(response.body);
 
-    otpResponse = new OTPResponse.fromJson(data);
+    user = new User.fromJson(data);
+    return user;
+  }else{
+    return null;
+  }
+}
+
+Future<User> verifyOTP(String sessionId, String otp,String phone) async{
+
+
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString("authUsername", otpResponse.authUserName);
-    prefs.setString("authPassword", otpResponse.authPassword);
+    prefs.setString("phone", phone);
+    prefs.setString("sessionId", sessionId);
+    prefs.setString("otp", otp);
 
     bool ok = await getTokens();
 
     if(ok) {
-      return otpResponse.user;
+      User user = await getUserDetails(phone);
+
+      if(user==null){
+        return null;
+      }else{
+        return user;
+      }
+
+
     }else{
       return null;
     }
 
-  }else{
-    return null;
-  }
+
 
 }
 

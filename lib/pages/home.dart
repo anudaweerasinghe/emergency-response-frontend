@@ -110,9 +110,7 @@ class _HomeScreenState extends State<HomeScreen>{
 
   @override
   Widget build(BuildContext context) {
-
     getMessages();
-
 
     return new Scaffold(
       appBar: PreferredSize(
