@@ -46,7 +46,7 @@ Future<bool> getTokens() async{
 
 Future<String> LogIn(String phone) async{
 
-  String url = baseUrl+'/login/login';
+  String url = baseUrl+'/otp';
   Map<String, String> headers = {"Content-type": "application/json"};
   String json = '{"phone": "'+phone+'"}';
 
@@ -66,7 +66,7 @@ Future<User> getUserDetails(String phone) async {
   String accessToken = pref2.get("access_token");
 
 
-  String url = baseUrl + '/main/user-details';
+  String url = baseUrl + '/users';
   Map<String, String> headers = {
     "Content-type": "application/json",
     "Authorization": "Bearer " + accessToken
@@ -125,7 +125,7 @@ Future<List<Message>> getNewMessages(String phone)  async{
   String accessToken = pref2.get("access_token");
 
 
-  String url = baseUrl+'/main/new-messages';
+  String url = baseUrl+'/messages/new';
   Map<String, String> headers = {"Content-type": "application/json", "Authorization":"Bearer "+accessToken};
   String json1 = '{"phone": "'+phone+'"}';
 
@@ -167,7 +167,7 @@ Future<List<Message>> getRespondedMessages(String phone)  async{
   String accessToken = pref2.get("access_token");
 
 
-  String url = baseUrl+'/main/responded-messages';
+  String url = baseUrl+'/messages/responded';
   Map<String, String> headers = {"Content-type": "application/json", "Authorization":"Bearer "+accessToken};
   String json1 = '{"phone": "'+phone+'"}';
 
@@ -208,7 +208,7 @@ Future<List<Message>> getAllMessages()  async{
   String accessToken = pref2.get("access_token");
 
 
-  String url = baseUrl+'/admin/all-messages';
+  String url = baseUrl+'/admin/messages';
   Map<String, String> headers = {"Content-type": "application/json", "Authorization":"Bearer "+accessToken};
 
   final response = await http.get(url, headers: headers);
@@ -249,11 +249,11 @@ Future<int> updateStatus(int messageId, int newStatus, String phone) async{
   String accessToken = pref2.get("access_token");
 
 
-  String url = baseUrl+'/main/update-status';
+  String url = baseUrl+'/messages';
   Map<String, String> headers = {"Content-type": "application/json", "Authorization":"Bearer "+accessToken};
   String json1 = '{"messageId": "'+messageId.toString()+'", "newStatus": "'+newStatus.toString()+'", "phone": "'+phone+'"}';
 
-  final response = await http.post(url, headers: headers, body: json1);
+  final response = await http.put(url, headers: headers, body: json1);
 
   if(response.statusCode==200) {
     return response.statusCode;
@@ -281,7 +281,7 @@ Future<int> sendNewMessage(String subject, String message, String phone) async{
 
   String accessToken = pref2.get("access_token");
 
-  String url = baseUrl+'/admin/new-message/';
+  String url = baseUrl+'/admin/message/';
   Map<String, String> headers = {"Content-type": "application/json", "Authorization":"Bearer "+accessToken};
   String json = '{"subject": "'+subject+'", "message": "'+message+'", "author": "'+phone+'"}';
 
@@ -316,7 +316,7 @@ Future<StatusDetails> getStatusDetails(int messageId) async{
   String accessToken = pref2.get("access_token");
 
 
-  String url = baseUrl+'/admin/status-details';
+  String url = baseUrl+'/admin/messages/status';
   Map<String, String> headers = {"Content-type": "application/json", "Authorization":"Bearer "+accessToken};
   String json1 = '{"messageId": "'+messageId.toString()+'"}';
 
