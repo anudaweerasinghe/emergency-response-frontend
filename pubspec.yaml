@@ -30,6 +30,9 @@ dependencies:
   pin_view: ^1.0.1
   countdown_flutter: ^0.1.1
   shared_preferences: ^0.5.3+1
+  url_launcher: ^5.0.3
+  location: ^1.4.1
+
 
 dev_dependencies:
   flutter_test:

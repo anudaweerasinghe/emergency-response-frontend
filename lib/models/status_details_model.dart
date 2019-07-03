@@ -1,10 +1,11 @@
 import 'user_model.dart';
 import 'message_model.dart';
+import 'user_status_model.dart';
 
 class StatusDetails {
   Message message;
-  List<User> safeUsers;
-  List<User> affectedUsers;
+  List<UserStatus> safeUsers;
+  List<UserStatus> affectedUsers;
   List<User> noResponseUsers;
 
   StatusDetails(
@@ -14,10 +15,10 @@ class StatusDetails {
 
 
     var safeUsersFromJson = json['safeUsers'] as List;
-    List<User> safeUsersList = safeUsersFromJson.map<User>((json)=>User.fromJson(json)).toList();
+    List<UserStatus> safeUsersList = safeUsersFromJson.map<UserStatus>((json)=>UserStatus.fromJson(json)).toList();
 
     var affectedUsersFromJson = json['affectedUsers'] as List;
-    List<User> affectedUsersList = affectedUsersFromJson.map<User>((json)=>User.fromJson(json)).toList();
+    List<UserStatus> affectedUsersList = affectedUsersFromJson.map<UserStatus>((json)=>UserStatus.fromJson(json)).toList();
 
     var noResponseUsersFromJson = json['noResponseUsers'];
     List<User> noResponseUsersList = noResponseUsersFromJson.map<User>((json)=>User.fromJson(json)).toList();

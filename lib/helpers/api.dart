@@ -240,7 +240,8 @@ Future<List<Message>> getAllMessages()  async{
 
 }
 
-Future<int> updateStatus(int messageId, int newStatus, String phone) async{
+Future<int> updateStatus(int messageId, int newStatus, String phone, double lat, double lng) async{
+
 
   bool restart = false;
 
@@ -251,7 +252,7 @@ Future<int> updateStatus(int messageId, int newStatus, String phone) async{
 
   String url = baseUrl+'/messages';
   Map<String, String> headers = {"Content-type": "application/json", "Authorization":"Bearer "+accessToken};
-  String json1 = '{"messageId": "'+messageId.toString()+'", "newStatus": "'+newStatus.toString()+'", "phone": "'+phone+'"}';
+  String json1 = '{"lat": '+lat.toString()+',"lng": '+lng.toString()+',"messageId": '+messageId.toString()+',"newStatus": '+newStatus.toString()+',"phone": "'+phone+'"}';
 
   final response = await http.put(url, headers: headers, body: json1);
 
@@ -262,7 +263,7 @@ Future<int> updateStatus(int messageId, int newStatus, String phone) async{
     if(restart==false){
       restart = await getTokens();
       if(restart = true){
-        return updateStatus(messageId, newStatus, phone);
+        return updateStatus(messageId, newStatus, phone,lat,lng);
       }else{
         return null;
       }
