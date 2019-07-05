@@ -112,7 +112,8 @@ class _OTPScreenState extends State<OTPScreen>{
       Navigator.pushReplacement(
         context,
         new MaterialPageRoute(builder: (ctxt) => new HomeScreen()),
-      );    }
+      );
+    }
   }
 
   _resendCode() async{
