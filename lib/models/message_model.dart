@@ -11,6 +11,8 @@ class Message {
   int noResponse;
   int affected;
   String timestamp;
+  String positiveButtonText;
+  String negativeButtonText;
 
   Message({
     this.id,
@@ -21,8 +23,9 @@ class Message {
     this.safe,
     this.noResponse,
     this.affected,
-    this.timestamp
-
+    this.timestamp,
+    this.positiveButtonText,
+    this.negativeButtonText
   });
 
   factory Message.fromJson(Map<String, dynamic> json){
@@ -35,7 +38,9 @@ class Message {
         safe: json['safe'],
         noResponse: json['noResponse'],
         affected: json['affected'],
-        timestamp:json['timestamp']
+        timestamp:json['timestamp'],
+        positiveButtonText: json['positiveButtonText'],
+        negativeButtonText:json['negativeButtonText']
     );
   }
 

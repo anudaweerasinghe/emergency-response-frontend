@@ -274,7 +274,7 @@ Future<int> updateStatus(int messageId, int newStatus, String phone, double lat,
 
 }
 
-Future<int> sendNewMessage(String subject, String message, String phone) async{
+Future<int> sendNewMessage(String subject, String message, String phone, String positiveTitle, String negativeTitle) async{
 
   bool restart = false;
 
@@ -284,7 +284,7 @@ Future<int> sendNewMessage(String subject, String message, String phone) async{
 
   String url = baseUrl+'/admin/message/';
   Map<String, String> headers = {"Content-type": "application/json", "Authorization":"Bearer "+accessToken};
-  String json = '{"subject": "'+subject+'", "message": "'+message+'", "author": "'+phone+'"}';
+  String json = '{"subject": "'+subject+'", "message": "'+message+'", "author": "'+phone+'", "positiveButtonText": "'+positiveTitle+'", "negativeButtonText": "'+negativeTitle+'"}';
 
   final response = await http.post(url, headers: headers, body: json);
 
@@ -297,7 +297,7 @@ Future<int> sendNewMessage(String subject, String message, String phone) async{
     if(restart==false){
       restart = await getTokens();
       if(restart = true){
-        return sendNewMessage(subject, message, phone);
+        return sendNewMessage(subject, message, phone,positiveTitle, negativeTitle);
       }else{
         return null;
       }

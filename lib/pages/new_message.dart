@@ -12,6 +12,10 @@ class _NewMessageScreenState extends State<NewMessageScreen> {
 
   TextEditingController subjectController = new TextEditingController();
   TextEditingController msgController = new TextEditingController();
+  TextEditingController positiveController = new TextEditingController();
+  TextEditingController negativeController = new TextEditingController();
+
+
   bool isButtonDisabled;
 
   SharedPreferences prefs;
@@ -25,6 +29,8 @@ class _NewMessageScreenState extends State<NewMessageScreen> {
     super.initState();
     msgController.addListener(onChange);
     subjectController.addListener(onChange);
+    positiveController.addListener(onChange);
+    negativeController.addListener(onChange);
 
     isButtonDisabled = true;
     getInfo();
@@ -63,7 +69,7 @@ class _NewMessageScreenState extends State<NewMessageScreen> {
 
 
   void onChange(){
-    if(msgController.text.length>0&&subjectController.text.length>0){
+    if(msgController.text.length>0&&subjectController.text.length>0&&positiveController.text.length>0&&negativeController.text.length>0){
       setState(() {
         isButtonDisabled = false;
       });
@@ -79,7 +85,7 @@ class _NewMessageScreenState extends State<NewMessageScreen> {
     pr.setMessage("Sending...");
     pr.show();
 
-    int response = await sendNewMessage(subjectController.text, msgController.text, phone);
+    int response = await sendNewMessage(subjectController.text, msgController.text, phone,positiveController.text,negativeController.text);
 
     pr.hide(context);
     
@@ -128,14 +134,10 @@ class _NewMessageScreenState extends State<NewMessageScreen> {
           padding: EdgeInsets.symmetric(vertical: 30, horizontal: 30),
           child: Column(
             children: <Widget>[
-              Expanded(
-                  flex:1,
-                  child: Padding(padding: new EdgeInsets.symmetric(horizontal: 1, vertical: 1))
-              ),
+
               Expanded(
                 flex: 4,
                 child: ListView(
-                  physics: const NeverScrollableScrollPhysics(),
                   children: <Widget>[
                     Text('Subject',
                         style:new TextStyle(
@@ -174,13 +176,45 @@ class _NewMessageScreenState extends State<NewMessageScreen> {
                           ),
                         )
                     ),
+                    Text('Positive Button Title',
+                        style:new TextStyle(
+                          fontSize: 28.0,
+                          fontWeight: FontWeight.bold,
+                        )
+                    ),
+                    TextField(
+                        controller: positiveController,
+                        maxLength: 8,
+                        decoration: InputDecoration(
+                          enabledBorder: new UnderlineInputBorder(
+                            borderSide: BorderSide(color: new Color.fromARGB(255, 255, 75, 43),
+                                width: 2.0),
+                          ),
+                        )
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(top: 15),
+                    ),
+                    Text('Negative Button Title',
+                        style:new TextStyle(
+                          fontSize: 28.0,
+                          fontWeight: FontWeight.bold,
+                        )
+                    ),
+                    TextField(
+                        controller: negativeController,
+                        maxLength: 8,
+                        decoration: InputDecoration(
+                          enabledBorder: new UnderlineInputBorder(
+                            borderSide: BorderSide(color: new Color.fromARGB(255, 255, 75, 43),
+                                width: 2.0),
+                          ),
+                        )
+                    ),
                   ],
                 ),
               ),
-              Expanded(
-                  flex:2,
-                  child: Padding(padding: new EdgeInsets.symmetric(horizontal: 1, vertical: 1))
-              ),
+
               Expanded(
                 flex: 0,
                 child: new FractionallySizedBox(

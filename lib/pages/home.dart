@@ -451,7 +451,11 @@ class _HomeScreenState extends State<HomeScreen>{
                                                         color: Colors.white,
                                                         size: 40,),
                                                       title: Text(
-                                                          "Safe",
+                                                          newMessages
+                                                              ? newMessagesList[index]
+                                                              .positiveButtonText
+                                                              : respondedList[index]
+                                                              .positiveButtonText,
                                                           textAlign: TextAlign
                                                               .center,
                                                           style: TextStyle(
@@ -523,7 +527,11 @@ class _HomeScreenState extends State<HomeScreen>{
                                                         color: Colors.white,
                                                         size: 40,),
                                                       title: Text(
-                                                          "Affected",
+                                                          newMessages
+                                                              ? newMessagesList[index]
+                                                              .negativeButtonText
+                                                              : respondedList[index]
+                                                              .negativeButtonText,
                                                           textAlign: TextAlign
                                                               .center,
                                                           style: TextStyle(
