@@ -35,7 +35,11 @@ class _SplashScreenState extends State<SplashScreen> {
       body: new Center(
         child: new SizedBox(
           child: Container(
-            child: new Image.asset('images/ADL.png'),
+            child:Padding(
+              padding: EdgeInsets.symmetric(horizontal: 40),
+              child:new Image.asset('images/ADL.png'),
+
+            ),
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [

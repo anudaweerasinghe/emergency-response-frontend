@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:emergency_response_app/helpers/api.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:progress_dialog/progress_dialog.dart';
+import 'admin_home.dart';
 
 class NewMessageScreen extends StatefulWidget {
   @override
@@ -90,6 +91,12 @@ class _NewMessageScreenState extends State<NewMessageScreen> {
     pr.hide(context);
     
     Navigator.pop(context);
+    Navigator.pop(context);
+    Navigator.push(
+      context,
+      new MaterialPageRoute(
+          builder: (ctxt) => new AdminHomeScreen()),
+    );
     if(response==200){
       _showDialog("Your message was sent to all staff successfully!", "Success!");
     }else{
@@ -164,18 +171,30 @@ class _NewMessageScreenState extends State<NewMessageScreen> {
                           fontWeight: FontWeight.bold,
                         )
                     ),
-                    TextField(
-                        controller: msgController,
-                        keyboardType: TextInputType.multiline,
-                        maxLength: 280,
-                        maxLines: 7,
-                        decoration: InputDecoration(
-                          enabledBorder: new UnderlineInputBorder(
-                            borderSide: BorderSide(color: new Color.fromARGB(255, 255, 75, 43),
-                                width: 2.0),
+                    new ConstrainedBox(
+                      constraints: BoxConstraints(
+                        maxHeight: 300.0,
+                      ),
+                      child: new Scrollbar(
+                        child: new SingleChildScrollView(
+                          scrollDirection: Axis.vertical,
+                          reverse: true,
+                          child: TextField(
+                              controller: msgController,
+                              keyboardType: TextInputType.multiline,
+                              maxLength: 280,
+                        maxLines: null,
+                              decoration: InputDecoration(
+                                enabledBorder: new UnderlineInputBorder(
+                                  borderSide: BorderSide(color: new Color.fromARGB(255, 255, 75, 43),
+                                      width: 2.0),
+                                ),
+                              )
                           ),
-                        )
+                        ),
+                      ),
                     ),
+
                     Text('Positive Button Title',
                         style:new TextStyle(
                           fontSize: 28.0,

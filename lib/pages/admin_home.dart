@@ -20,6 +20,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen>{
   @override
   initState() {
     super.initState();
+    getMessages();
   }
 
   getMessages() async{
@@ -34,7 +35,6 @@ class _AdminHomeScreenState extends State<AdminHomeScreen>{
   @override
   Widget build(BuildContext context) {
 
-    getMessages();
 
     List<Color> colorsList= new List();
     colorsList.add(Colors.red);
@@ -385,16 +385,15 @@ class _AdminHomeScreenState extends State<AdminHomeScreen>{
                 ]
             )
         ),
-        floatingActionButton: FloatingActionButton.extended(
+        floatingActionButton: FloatingActionButton(
           onPressed: () {
             Navigator.push(
               context,
               new MaterialPageRoute(builder: (ctxt) => new NewMessageScreen()),
             );
           },
-          icon: Icon(Icons.edit, color: Colors.white,),
+          child: Icon(Icons.edit, color: Colors.white,),
           backgroundColor: new Color.fromARGB(255, 255, 75, 43),
-          label: Text('New Message'),
         ),
 
       );

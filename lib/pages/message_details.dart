@@ -171,7 +171,7 @@ class _MessageDetailsScreenState extends State<MessageDetailsScreen> {
                                       ),
                                       title: Text(
                                           statusDetails.safeUsers[index].name,
-                                          textAlign: TextAlign.right,
+                                          textAlign: TextAlign.left,
                                           style: new TextStyle(
                                               fontSize: 18.0,
                                               fontWeight: FontWeight.w900,
@@ -182,7 +182,7 @@ class _MessageDetailsScreenState extends State<MessageDetailsScreen> {
                                               '    ' +
                                               statusDetails
                                                   .safeUsers[index].phone,
-                                          textAlign: TextAlign.right,
+                                          textAlign: TextAlign.left,
                                           style: new TextStyle(
                                               fontSize: 14.0,
                                               fontWeight: FontWeight.w500,
@@ -191,14 +191,14 @@ class _MessageDetailsScreenState extends State<MessageDetailsScreen> {
                                       trailing: Container(
                                           child:IconButton(
                                             icon: Icon(Icons.location_on),
-                                            color: Colors.white,
+                                            color: Colors.red,
                                             onPressed: (){
                                               _launchURL(statusDetails.safeUsers[index].lat, statusDetails.safeUsers[index].lng);
                                             },
                                         ),
                                         decoration: BoxDecoration(
                                           shape: BoxShape.circle,
-                                          color: Colors.blue
+                                          color: Colors.white
                                         ),
                                       ),
                                     )
@@ -307,7 +307,7 @@ class _MessageDetailsScreenState extends State<MessageDetailsScreen> {
                                       title: Text(
                                           statusDetails
                                               .affectedUsers[index].name,
-                                          textAlign: TextAlign.right,
+                                          textAlign: TextAlign.left,
                                           style: new TextStyle(
                                               fontSize: 18.0,
                                               fontWeight: FontWeight.w900,
@@ -318,7 +318,7 @@ class _MessageDetailsScreenState extends State<MessageDetailsScreen> {
                                               '    ' +
                                               statusDetails
                                                   .affectedUsers[index].phone,
-                                          textAlign: TextAlign.right,
+                                          textAlign: TextAlign.left,
                                           style: new TextStyle(
                                               fontSize: 14.0,
                                               fontWeight: FontWeight.w500,
@@ -327,14 +327,14 @@ class _MessageDetailsScreenState extends State<MessageDetailsScreen> {
                                       trailing: Container(
                                         child:IconButton(
                                           icon: Icon(Icons.location_on),
-                                          color: Colors.white,
+                                          color: Colors.red,
                                           onPressed: (){
                                             _launchURL(statusDetails.affectedUsers[index].lat, statusDetails.affectedUsers[index].lng);
                                           },
                                         ),
                                         decoration: BoxDecoration(
                                             shape: BoxShape.circle,
-                                            color: Colors.blue
+                                            color: Colors.white
                                         ),
                                       ),
                                     )
@@ -444,7 +444,7 @@ class _MessageDetailsScreenState extends State<MessageDetailsScreen> {
                                       title: Text(
                                           statusDetails
                                               .noResponseUsers[index].name,
-                                          textAlign: TextAlign.right,
+                                          textAlign: TextAlign.left,
                                           style: new TextStyle(
                                               fontSize: 18.0,
                                               fontWeight: FontWeight.w900,
@@ -455,7 +455,7 @@ class _MessageDetailsScreenState extends State<MessageDetailsScreen> {
                                               '    ' +
                                               statusDetails
                                                   .noResponseUsers[index].phone,
-                                          textAlign: TextAlign.right,
+                                          textAlign: TextAlign.left,
                                           style: new TextStyle(
                                               fontSize: 14.0,
                                               fontWeight: FontWeight.w500,
